@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29209.62
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A3D4981B-EF62-4168-BF70-D69254FD2BC5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{AC8B54C8-FAA3-40D5-A510-6D1CE9DCCEB0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WifiConnection", "WifiConnection", "{322DE144-5AC9-42D5-A7D6-53539D8DEC68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WifiInterfaceConnection", "WifiInterfaceConnection\WifiInterfaceConnection.csproj", "{B09BE111-5CF2-44D1-89BA-B5B160566DB2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B09BE111-5CF2-44D1-89BA-B5B160566DB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B09BE111-5CF2-44D1-89BA-B5B160566DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B09BE111-5CF2-44D1-89BA-B5B160566DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B09BE111-5CF2-44D1-89BA-B5B160566DB2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AC8B54C8-FAA3-40D5-A510-6D1CE9DCCEB0} = {A3D4981B-EF62-4168-BF70-D69254FD2BC5}
+		{322DE144-5AC9-42D5-A7D6-53539D8DEC68} = {A3D4981B-EF62-4168-BF70-D69254FD2BC5}
+		{B09BE111-5CF2-44D1-89BA-B5B160566DB2} = {322DE144-5AC9-42D5-A7D6-53539D8DEC68}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0DD3495F-DB33-454B-8C67-366FD92A386B}
+	EndGlobalSection
+EndGlobal
