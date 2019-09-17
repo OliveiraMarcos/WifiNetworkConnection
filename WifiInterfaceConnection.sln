@@ -9,7 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{AC8B54
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WifiConnection", "WifiConnection", "{322DE144-5AC9-42D5-A7D6-53539D8DEC68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WifiInterfaceConnection", "WifiInterfaceConnection\WifiInterfaceConnection.csproj", "{B09BE111-5CF2-44D1-89BA-B5B160566DB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WifiInterfaceConnection", "WifiInterfaceConnection\WifiInterfaceConnection.csproj", "{B09BE111-5CF2-44D1-89BA-B5B160566DB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WifiInterfaceConnection.Sample", "WifiInterfaceConnection.Sample\WifiInterfaceConnection.Sample.csproj", "{D9FCBDD4-0162-4D9E-A2DC-6D8562FDF2EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B09BE111-5CF2-44D1-89BA-B5B160566DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B09BE111-5CF2-44D1-89BA-B5B160566DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B09BE111-5CF2-44D1-89BA-B5B160566DB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9FCBDD4-0162-4D9E-A2DC-6D8562FDF2EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9FCBDD4-0162-4D9E-A2DC-6D8562FDF2EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9FCBDD4-0162-4D9E-A2DC-6D8562FDF2EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9FCBDD4-0162-4D9E-A2DC-6D8562FDF2EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -29,6 +35,7 @@ Global
 		{AC8B54C8-FAA3-40D5-A510-6D1CE9DCCEB0} = {A3D4981B-EF62-4168-BF70-D69254FD2BC5}
 		{322DE144-5AC9-42D5-A7D6-53539D8DEC68} = {A3D4981B-EF62-4168-BF70-D69254FD2BC5}
 		{B09BE111-5CF2-44D1-89BA-B5B160566DB2} = {322DE144-5AC9-42D5-A7D6-53539D8DEC68}
+		{D9FCBDD4-0162-4D9E-A2DC-6D8562FDF2EC} = {AC8B54C8-FAA3-40D5-A510-6D1CE9DCCEB0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0DD3495F-DB33-454B-8C67-366FD92A386B}

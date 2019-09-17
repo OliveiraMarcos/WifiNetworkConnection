@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using WifiInterfaceConnection.Core.Model;
 
 namespace WifiInterfaceConnection
 {
     public interface IWifiConnection
     {
-        bool ConnectNetwork(string SSID, string password);
-        IList<Network> GetNetworks();
+        Task<bool> IsConnected { get; set; }
+        Task<bool> ConnectNetworkAsync(string SSID, string password);
+        Task<IList<Network>> GetNetworksAsync();
     }
 }

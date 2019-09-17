@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 using WifiInterfaceConnection.Core.Model;
 
 namespace WifiInterfaceConnection.Core.InterfaceConnection
@@ -13,34 +14,42 @@ namespace WifiInterfaceConnection.Core.InterfaceConnection
         private const string _argumentsListNetwork = "wlan show networks";
         private readonly Process NewProcess = new Process();
 
-        private string[] GetAllNetworks()
+        public Task<bool> IsConnected { get; set; }
+
+        private Task<string[]> GetAllNetworksAsync()
         {
-            NewProcess.StartInfo.FileName = _fileName;
-            NewProcess.StartInfo.Arguments = _argumentsListNetwork;
+            var task = new Task<string[]>(() => 
+            { 
+                NewProcess.StartInfo.FileName = _fileName;
+                NewProcess.StartInfo.Arguments = _argumentsListNetwork;
 
-            try
-            {
-                using (Process execute = Process.Start(NewProcess.StartInfo))
+                try
                 {
-                    return execute.StandardOutput.ReadToEnd().Split("\r\n".ToCharArray());
+                    using (Process execute = Process.Start(NewProcess.StartInfo))
+                    {
+                        return execute.StandardOutput.ReadToEnd().Split("\r\n".ToCharArray());
+                    }
                 }
-            }
-            catch (Exception)
-            {
+                catch (Exception)
+                {
 
-                throw;
-            }
+                    throw;
+                }
+            });
+            task.Start();
+            return task;
         }
 
         #endregion
 
         #region Public
-        public bool ConnectNetwork(string SSID, string password)
+        
+        public Task<bool> ConnectNetworkAsync(string SSID, string password)
         {
             throw new NotImplementedException();
         }
 
-        public IList<Network> GetNetworks()
+        public Task<IList<Network>> GetNetworksAsync()
         {
             throw new NotImplementedException();
         }
