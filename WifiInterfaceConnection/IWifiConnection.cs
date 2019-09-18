@@ -8,8 +8,10 @@ namespace WifiInterfaceConnection
 {
     public interface IWifiConnection
     {
+        List<string> GetErrors();
         Task<bool> IsConnected { get; set; }
         Task<bool> ConnectNetworkAsync(string SSID, string password);
         Task<IList<Network>> GetNetworksAsync();
+
     }
 }

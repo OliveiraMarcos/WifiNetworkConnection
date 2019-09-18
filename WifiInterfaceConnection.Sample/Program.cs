@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Threading.Tasks;
+using WifiInterfaceConnection.Core.InterfaceConnection;
 
 namespace WifiInterfaceConnection.Sample
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //Listando redes
+            var networkConn = new NetworkConnect();
+            var allNetworks = await networkConn.NetworkWifi.GetNetworksAsync();
         }
     }
 }
