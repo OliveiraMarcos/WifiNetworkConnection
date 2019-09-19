@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using WifiInterfaceConnection.Core.Extension;
 using WifiInterfaceConnection.Core.Model;
 
 namespace WifiInterfaceConnection.Core.InterfaceConnection
@@ -12,18 +13,53 @@ namespace WifiInterfaceConnection.Core.InterfaceConnection
         #region Private
         private const string _fileName = "netsh";
         private const string _argumentsListNetwork = "wlan show networks";
+        private const string _argumentsFileName = "wlan add profile filename='ConnectWifi.xml'";
+        private const string _argumentsConnect = "wlan connect  ssid={0} name={0}";
         private readonly Process NewProcess = new Process();
         private List<string> Erros { get; set; }
 
         public Task<bool> IsConnected { get; set; }
+        private async Task AddProfile()
+        {
+            NewProcess.StartInfo.Arguments = _argumentsFileName;
+            try
+            {
+                using (Process execute = Process.Start(NewProcess.StartInfo))
+                {
+                    await execute.WaitForExitAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                Erros.Add(ex.Message);
+                throw;
+            }
+        }
+
+        private async Task ConnectProfile()
+        {
+            NewProcess.StartInfo.Arguments = _argumentsFileName;
+            try
+            {
+                using (Process execute = Process.Start(NewProcess.StartInfo))
+                {
+                    await execute.WaitForExitAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                Erros.Add(ex.Message);
+                throw;
+            }
+        }
+
+
 
         private Task<Dictionary<int, Dictionary<int, string>>> GetAllNetworksAsync()
         {
-            var task = new Task<Dictionary<int, Dictionary<int, string>>>(() => 
-            { 
-                NewProcess.StartInfo.FileName = _fileName;
+            var task = new Task<Dictionary<int, Dictionary<int, string>>>(() =>
+            {
                 NewProcess.StartInfo.Arguments = _argumentsListNetwork;
-                NewProcess.StartInfo.RedirectStandardOutput = true;
                 try
                 {
                     using (Process execute = Process.Start(NewProcess.StartInfo))
@@ -71,9 +107,14 @@ namespace WifiInterfaceConnection.Core.InterfaceConnection
 
         public WindowsWifiConnection()
         {
+            NewProcess.StartInfo.UseShellExecute = false;
+            NewProcess.StartInfo.CreateNoWindow = true;
+            NewProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            NewProcess.StartInfo.RedirectStandardOutput = true;
+            NewProcess.StartInfo.FileName = _fileName;
             Erros = new List<string>();
         }
-        
+
         public Task<bool> ConnectNetworkAsync(string SSID, string password)
         {
             throw new NotImplementedException();
@@ -85,10 +126,12 @@ namespace WifiInterfaceConnection.Core.InterfaceConnection
             var result = new List<Network>();
             foreach (var value in dicNetworks.Values)
             {
-                result.Add(new Network() { SSID = value[0].Trim(),
-                                           NetworkType = value[1].Trim(),
-                                           Authentication = value[2].Trim(),
-                                           Encryption = value[3].Trim()
+                result.Add(new Network()
+                {
+                    SSID = value[0].Trim(),
+                    NetworkType = value[1].Trim(),
+                    Authentication = value[2].Trim(),
+                    Encryption = value[3].Trim()
                 });
             }
             return result;
