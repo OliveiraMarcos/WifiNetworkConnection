@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
 using WifiInterfaceConnection.Core.Model;
 
@@ -17,6 +19,10 @@ namespace WifiInterfaceConnection.Core.Adapter
                 return stringwriter.ToString();
             }
         }
+        public async Task SaveAsync(string pathName)
+        {
+            await File.WriteAllTextAsync(pathName, ToXML());
+    }
         protected WLANProfile()
         {
 
@@ -38,9 +44,10 @@ namespace WifiInterfaceConnection.Core.Adapter
         public string ConnectionMode { get; set; }
         [XmlElement(ElementName = "security")]
         public Security Security { get; set; }
+        public MacRandomization MacRandomization { get; set; }
 
     }
-
+    
     public class SSID
     {
         protected SSID()
@@ -111,5 +118,29 @@ namespace WifiInterfaceConnection.Core.Adapter
         public bool Protected { get; set; }
         [XmlElement(ElementName = "keyMaterial")]
         public string KeyMaterial { get; set; }
+    }
+    public class MacRandomization
+    {
+        protected MacRandomization()
+        {
+
+        }
+        public MacRandomization(bool enableRandomization = false)
+        {
+            EnableRandomization = enableRandomization;
+        }
+        [XmlElement(ElementName = "enableRandomization")]
+        public bool EnableRandomization { get; set; }
+    }
+    public class Factory
+    {
+        public static WLANProfile New(string xmlText)
+        {
+            using (var stringReader = new System.IO.StringReader(xmlText))
+            {
+                var serializer = new XmlSerializer(typeof(WLANProfile));
+                return serializer.Deserialize(stringReader) as WLANProfile;
+            }
+        }
     }
 }
