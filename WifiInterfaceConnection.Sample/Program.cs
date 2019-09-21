@@ -13,14 +13,19 @@ namespace WifiInterfaceConnection.Sample
             //Listando redes
             var networkConn = new NetworkConnect();
             var allNetworks = await networkConn.NetworkWifi.GetNetworksAsync();
-            var teste = new WLANProfile("SSID","senhadd", allNetworks.FirstOrDefault());
-            var test = teste.ToXML();
-            //var xml = new Xml();
-            //xml.SSIDConfig.SSID.hex = "jbljbb";
-            //xml.SSIDConfig.SSID.name = "ssid";
-            //xml.name = "ssid";
-
-            //var teste = xml.ToXML();
+            var myNetwork = allNetworks.Where(e => e.SSID == "Aguarde...").FirstOrDefault();
+            networkConn.NetworkWifi.ConnectNetworkAsync(myNetwork,"Baydu1301");
+            if (networkConn.NetworkWifi.IsConnected.Result)
+            {
+                Console.WriteLine("Conected");
+            }
+            else
+            {
+                foreach (var err in networkConn.NetworkWifi.GetErrors())
+                {
+                    Console.WriteLine(err);
+                }
+            }
         }
     }
 }

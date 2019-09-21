@@ -10,7 +10,22 @@ namespace WifiInterfaceConnection.Core.InterfaceConnection
     {
         public Task<bool> IsConnected { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public Task<bool> ConnectNetworkAsync(string SSID, string password)
+        public void ConnectNetworkAsync(Network network, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ConnectNetworkAsync(string SSID, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> ConnectNetworkTaskAsync(Network network, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> ConnectNetworkTaskAsync(string SSID, string password)
         {
             throw new NotImplementedException();
         }

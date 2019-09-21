@@ -8,32 +8,20 @@ using WifiInterfaceConnection.Core.Model;
 
 namespace WifiInterfaceConnection.Core.Adapter
 {
-    public class WLANProfile
+    public class WLANProfile : FileXml
     {
-        public string ToXML()
-        {
-            using (var stringwriter = new System.IO.StringWriter())
-            {
-                var serializer = new XmlSerializer(this.GetType());
-                serializer.Serialize(stringwriter, this);
-                return stringwriter.ToString();
-            }
-        }
-        public async Task SaveAsync(string pathName)
-        {
-            await File.WriteAllTextAsync(pathName, ToXML());
-    }
         protected WLANProfile()
         {
 
         }
-        public WLANProfile(string ssid, string passwd, Network network, string connectionMode = "manual")
+        public WLANProfile(string passwd, Network network, string connectionMode = "manual")
         {
-            Name = ssid;
+            Name = network.SSID;
             ConnectionMode = connectionMode;
             ConnectionType = network.NetworkType;
-            SSIDConfig = new List<SSID>() {new SSID(ssid) };
+            SSIDConfig = new List<SSID>() {new SSID(network.SSID) };
             Security = new Security(new AuthEncryption(network.Authentication, network.Encryption), new SharedKey(passwd));
+            MacRandomization = new MacRandomization();
         }
         [XmlElement(ElementName = "name")]
         public string Name { get; set; }
