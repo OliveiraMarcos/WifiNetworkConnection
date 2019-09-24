@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Serialization;
 
-namespace WifiInterfaceConnection.Core.Adapter
+namespace WifiInterfaceConnection.Core.Xml.XmlClass
 {
     public abstract class FileXml
     {
@@ -28,8 +29,17 @@ namespace WifiInterfaceConnection.Core.Adapter
         {
             using (var stringwriter = new System.IO.StringWriter())
             {
+                var xwsSettings = new XmlWriterSettings();
+                xwsSettings.Encoding = Encoding.UTF8;
+                xwsSettings.OmitXmlDeclaration = true;
+                xwsSettings.NewLineOnAttributes = true;
+                xwsSettings.Indent = true;
+                xwsSettings.ConformanceLevel = ConformanceLevel.Document;
+
+                var writer = XmlWriter.Create(stringwriter, xwsSettings);
+
                 var serializer = new XmlSerializer(this.GetType());
-                serializer.Serialize(stringwriter, this);
+                serializer.Serialize(writer, this);
                 return stringwriter.ToString();
             }
         }
