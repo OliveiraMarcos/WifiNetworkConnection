@@ -13,8 +13,8 @@ namespace WifiInterfaceConnection.Sample
             //Listando redes
             var networkConn = new NetworkConnect();
             var allNetworks = await networkConn.NetworkWifi.GetNetworksAsync();
-            var myNetwork = allNetworks.Where(e => e.SSID == "Aguarde...").FirstOrDefault();
-            networkConn.NetworkWifi.ConnectNetworkAsync(myNetwork,"Baydu1301");
+            var myNetwork = allNetworks.Where(e => e.SSID == "MySSID").FirstOrDefault();
+            networkConn.NetworkWifi.ConnectNetworkAsync(myNetwork,"MyPassword");
             if (networkConn.NetworkWifi.IsConnected.Result)
             {
                 Console.WriteLine("Conected");

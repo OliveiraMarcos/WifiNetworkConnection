@@ -18,9 +18,9 @@ namespace WifiInterfaceConnection.Core.Xml.XmlClass
         {
             Name = network.SSID;
             ConnectionMode = connectionMode;
-            ConnectionType = network.NetworkType;
+            ConnectionType = ConnectionTypeEnum.ESS;
             SSIDConfig = new List<SSID>() { new SSID(network.SSID) };
-            MSM = new List<Security>() { new Security(new AuthEncryption(network.Authentication, network.Encryption), new SharedKey(passwd)) };
+            MSM = new List<Security>() { new Security(new AuthEncryption(AuthenticationTypeEnum.WPAPSK, EncryptionTypeEnum.AES), new SharedKey(passwd)) };
             MacRandomization = new MacRandomization();
         }
 

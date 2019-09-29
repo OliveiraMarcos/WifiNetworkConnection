@@ -8,8 +8,8 @@ namespace WifiInterfaceConnection.Core.Model
     public class Network
     {
         public string SSID { get; set; }
-        public ConnectionTypeEnum NetworkType { get; set; }
-        public AuthenticationTypeEnum Authentication { get; set; }
-        public EncryptionTypeEnum Encryption { get; set; }
+        public string NetworkType { get; set; }
+        public string Authentication { get; set; }
+        public string Encryption { get; set; }
     }
 }

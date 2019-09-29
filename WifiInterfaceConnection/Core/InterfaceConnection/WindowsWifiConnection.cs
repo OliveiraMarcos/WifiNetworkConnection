@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using WifiInterfaceConnection.Core.Adapter;
 using WifiInterfaceConnection.Core.Extension;
 using WifiInterfaceConnection.Core.Model;
+using WifiInterfaceConnection.Core.Xml.XmlClass;
 
 namespace WifiInterfaceConnection.Core.InterfaceConnection
 {
